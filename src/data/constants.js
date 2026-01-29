@@ -12,9 +12,9 @@ export const SCHOOL_INFO = {
   shortName: 'BCRS',
   location: 'Brajrajnagar',
   logo: 'B',
-  phone: '+91 (0) XXXX XXXX XX',
-  email: 'info@believersschool.edu',
-  address: 'Believers Church Residential School, Brajrajnagar, [State]',
+  phone: '+91 8260137347',
+  email: 'bcrsodisha@gmail.com',
+  address: 'Believers Church Residential School, Brajrajnagar, Odisha',
   established: 2010,
   tagline: 'Nurturing Confident, Compassionate, and Capable Leaders'
 };
