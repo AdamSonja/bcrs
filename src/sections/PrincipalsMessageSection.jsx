@@ -1,8 +1,6 @@
 import React from 'react';
 import { Quote } from 'lucide-react';
-import { PRINCIPALS_MESSAGE } from '../data/constants';
-// Import principal photo so Vite/React can bundle it correctly.
-import principalImg from '../../WhatsApp Image 2026-01-26 at 10.58.43.jpeg';
+import { PRINCIPALS_MESSAGE, PRINCIPAL_IMG } from '../data/constants';
 
 const PrincipalsMessageSection = () => {
   return (
@@ -43,8 +41,8 @@ const PrincipalsMessageSection = () => {
             {/* Signature */}
               <div className="border-t-2 border-gray-200 pt-8 flex flex-col items-center">
               <div className="h-56 flex items-center mb-4">
-                  <img
-                    src={principalImg}
+                <img
+                  src={PRINCIPAL_IMG}
                   alt="Principal"
                   className="w-56 h-56 rounded-full object-cover border-2 border-blue-900"
                 />

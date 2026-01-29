@@ -63,13 +63,26 @@ export const KEY_FEATURES = [
   }
 ];
 
+// Load any image files placed in src/assets using Vite's glob import.
+// This avoids hard-coded relative string paths and ensures Vite bundles the assets
+// correctly for production. To make images appear in production, move your image
+// files into `src/assets/` (for example: src/assets/hero.jpeg).
+const imageModules = import.meta.globEager('../assets/*.{jpeg,jpg,png,webp,svg}');
+
+function findImageByName(basename) {
+  // Keys are like '../assets/WhatsApp Image ...jpeg'
+  const found = Object.keys(imageModules).find((k) => k.endsWith(basename));
+  return found ? imageModules[found].default : null;
+}
+
 export const NEWS_ITEMS = [
   {
     id: 1,
     category: 'Academic',
     title: 'New Science & Technology Lab Opens',
     description: 'Our state-of-the-art science laboratory with modern equipment and technology is now operational, enhancing hands-on learning experience.',
-    image: 'WhatsApp Image 2026-01-18 at 10.49.58 PM (1).jpeg',
+    // Place the matching image file into src/assets/ and keep the filename exact.
+    image: findImageByName('WhatsApp Image 2026-01-18 at 10.49.58 PM (1).jpeg'),
     date: 'Jan 20, 2026'
   },
   {
@@ -77,7 +90,7 @@ export const NEWS_ITEMS = [
     category: 'Sports',
     title: 'Annual Sports Day - Outstanding Performance',
     description: 'Students showcased exceptional talent and sportsmanship at the annual athletics event, setting new records.',
-    image: 'WhatsApp Image 2026-01-18 at 10.49.55 PM.jpeg',
+    image: findImageByName('WhatsApp Image 2026-01-18 at 10.49.55 PM.jpeg'),
     date: 'Jan 15, 2026'
   },
   {
@@ -85,7 +98,7 @@ export const NEWS_ITEMS = [
     category: 'Events',
     title: 'Annual Prize Distribution & Appreciation Day',
     description: 'Students were recognized for their academic achievements, sports excellence, and character development.',
-    image: 'WhatsApp Image 2026-01-18 at 10.50.09 PM.jpeg',
+    image: findImageByName('WhatsApp Image 2026-01-18 at 10.50.09 PM.jpeg'),
     date: 'Jan 10, 2026'
   }
 ];
@@ -133,27 +146,31 @@ I warmly invite you to be a part of the Believers Church Residential School fami
   school: 'Believers Church Residential School, Brajrajnagar'
 };
 
-export const HERO_IMAGE = '/WhatsApp Image 2026-01-18 at 10.49.59 PM.jpeg';
+// Hero image: put the matching file in src/assets
+export const HERO_IMAGE = findImageByName('WhatsApp Image 2026-01-18 at 10.49.59 PM.jpeg');
 
 export const GALLERY_IMAGES = [
-  { id: 1, image: '/WhatsApp Image 2026-01-18 at 10.49.53 PM (1).jpeg', category: 'Campus', caption: 'Annual Day Celebration 2024-25' },
-  { id: 2, image: '/WhatsApp Image 2026-01-18 at 10.49.53 PM.jpeg', category: 'Campus', caption: 'Annual Day Celebration 2024-25' },
-  { id: 3, image: '/WhatsApp Image 2026-01-18 at 10.49.54 PM.jpeg', category: 'Campus', caption: 'SAnnual Sports' },
-  { id: 4, image: '/WhatsApp Image 2026-01-18 at 10.49.55 PM.jpeg', category: 'Sports', caption: 'Annual Sports Day - Athletic Excellence' },
-  { id: 6, image: '/WhatsApp Image 2026-01-18 at 10.49.56 PM.jpeg', category: 'Campus', caption: 'Main Campus Building' },
-  { id: 7, image: '/WhatsApp Image 2026-01-18 at 10.49.57 PM.jpeg', category: 'Campus', caption: 'School Assembly' },
-  { id: 8, image: '/WhatsApp Image 2026-01-18 at 10.49.58 PM (1).jpeg', category: 'Academics', caption: 'Science & Technology Lab' },
-  { id: 9, image: '/WhatsApp Image 2026-01-18 at 10.49.58 PM.jpeg', category: 'Campus', caption: 'Lab' },
-  { id: 10, image: '/WhatsApp Image 2026-01-18 at 10.49.59 PM.jpeg', category: 'Campus', caption: 'Main Entrance' },
-  { id: 11, image: '/WhatsApp Image 2026-01-18 at 10.50.00 PM.jpeg', category: 'Campus', caption: 'Awards' },
-  { id: 12, image: '/WhatsApp Image 2026-01-18 at 10.50.02 PM.jpeg', category: 'Events', caption: 'School Annual Events & Celebrations' },
-  { id: 13, image: '/WhatsApp Image 2026-01-18 at 10.50.03 PM (1).jpeg', category: 'Campus', caption: 'Campus View(Ground)' },
-  { id: 14, image: '/WhatsApp Image 2026-01-18 at 10.50.03 PM.jpeg', category: 'Campus', caption: 'Prize Distribution Ceremony' },
-  { id: 15, image: '/WhatsApp Image 2026-01-18 at 10.50.04 PM.jpeg', category: 'Academics', caption: 'Campus Building' },
-  { id: 16, image: '/WhatsApp Image 2026-01-18 at 10.50.05 PM (1).jpeg', category: 'Campus', caption: 'Labratory' },
-  { id: 17, image: '/WhatsApp Image 2026-01-18 at 10.50.05 PM.jpeg', category: 'Campus', caption: 'School Bus' },
-  { id: 19, image: '/WhatsApp Image 2026-01-18 at 10.50.06 PM.jpeg', category: 'Campus', caption: 'Labratory' },
-  { id: 20, image: '/WhatsApp Image 2026-01-18 at 10.50.07 PM.jpeg', category: 'Campus', caption: 'Campus Scenery(Inside)' },
-  { id: 21, image: '/WhatsApp Image 2026-01-18 at 10.50.09 PM.jpeg', category: 'Events', caption: 'Annual Prize Distribution Ceremony' },
-  { id: 22, image: '/WhatsApp Image 2026-01-18 at 10.50.10 PM.jpeg', category: 'Campus', caption: 'Annual Prize Distribution Ceremony' }
+  { id: 1, image: findImageByName('WhatsApp Image 2026-01-18 at 10.49.53 PM (1).jpeg'), category: 'Campus', caption: 'Annual Day Celebration 2024-25' },
+  { id: 2, image: findImageByName('WhatsApp Image 2026-01-18 at 10.49.53 PM.jpeg'), category: 'Campus', caption: 'Annual Day Celebration 2024-25' },
+  { id: 3, image: findImageByName('WhatsApp Image 2026-01-18 at 10.49.54 PM.jpeg'), category: 'Campus', caption: 'SAnnual Sports' },
+  { id: 4, image: findImageByName('WhatsApp Image 2026-01-18 at 10.49.55 PM.jpeg'), category: 'Sports', caption: 'Annual Sports Day - Athletic Excellence' },
+  { id: 6, image: findImageByName('WhatsApp Image 2026-01-18 at 10.49.56 PM.jpeg'), category: 'Campus', caption: 'Main Campus Building' },
+  { id: 7, image: findImageByName('WhatsApp Image 2026-01-18 at 10.49.57 PM.jpeg'), category: 'Campus', caption: 'School Assembly' },
+  { id: 8, image: findImageByName('WhatsApp Image 2026-01-18 at 10.49.58 PM (1).jpeg'), category: 'Academics', caption: 'Science & Technology Lab' },
+  { id: 9, image: findImageByName('WhatsApp Image 2026-01-18 at 10.49.58 PM.jpeg'), category: 'Campus', caption: 'Lab' },
+  { id: 10, image: findImageByName('WhatsApp Image 2026-01-18 at 10.49.59 PM.jpeg'), category: 'Campus', caption: 'Main Entrance' },
+  { id: 11, image: findImageByName('WhatsApp Image 2026-01-18 at 10.50.00 PM.jpeg'), category: 'Campus', caption: 'Awards' },
+  { id: 12, image: findImageByName('WhatsApp Image 2026-01-18 at 10.50.02 PM.jpeg'), category: 'Events', caption: 'School Annual Events & Celebrations' },
+  { id: 13, image: findImageByName('WhatsApp Image 2026-01-18 at 10.50.03 PM (1).jpeg'), category: 'Campus', caption: 'Campus View(Ground)' },
+  { id: 14, image: findImageByName('WhatsApp Image 2026-01-18 at 10.50.03 PM.jpeg'), category: 'Campus', caption: 'Prize Distribution Ceremony' },
+  { id: 15, image: findImageByName('WhatsApp Image 2026-01-18 at 10.50.04 PM.jpeg'), category: 'Academics', caption: 'Campus Building' },
+  { id: 16, image: findImageByName('WhatsApp Image 2026-01-18 at 10.50.05 PM (1).jpeg'), category: 'Campus', caption: 'Labratory' },
+  { id: 17, image: findImageByName('WhatsApp Image 2026-01-18 at 10.50.05 PM.jpeg'), category: 'Campus', caption: 'School Bus' },
+  { id: 19, image: findImageByName('WhatsApp Image 2026-01-18 at 10.50.06 PM.jpeg'), category: 'Campus', caption: 'Labratory' },
+  { id: 20, image: findImageByName('WhatsApp Image 2026-01-18 at 10.50.07 PM.jpeg'), category: 'Campus', caption: 'Campus Scenery(Inside)' },
+  { id: 21, image: findImageByName('WhatsApp Image 2026-01-18 at 10.50.09 PM.jpeg'), category: 'Events', caption: 'Annual Prize Distribution Ceremony' },
+  { id: 22, image: findImageByName('WhatsApp Image 2026-01-18 at 10.50.10 PM.jpeg'), category: 'Campus', caption: 'Annual Prize Distribution Ceremony' }
 ];
+
+// Export a principal image reference for components that need it
+export const PRINCIPAL_IMG = findImageByName('WhatsApp Image 2026-01-26 at 10.58.43.jpeg');
