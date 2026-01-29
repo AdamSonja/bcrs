@@ -1,6 +1,8 @@
 import React from 'react';
 import { Quote } from 'lucide-react';
 import { PRINCIPALS_MESSAGE } from '../data/constants';
+// Import principal photo so Vite/React can bundle it correctly.
+import principalImg from '../../WhatsApp Image 2026-01-26 at 10.58.43.jpeg';
 
 const PrincipalsMessageSection = () => {
   return (
@@ -39,12 +41,12 @@ const PrincipalsMessageSection = () => {
             </div>
 
             {/* Signature */}
-            <div className="border-t-2 border-gray-200 pt-8 flex flex-col items-center">
-              <div className="h-16 flex items-center mb-4">
-                <img
-                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80&blend=https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80"
+              <div className="border-t-2 border-gray-200 pt-8 flex flex-col items-center">
+              <div className="h-56 flex items-center mb-4">
+                  <img
+                    src={principalImg}
                   alt="Principal"
-                  className="w-16 h-16 rounded-full object-cover border-2 border-blue-900"
+                  className="w-56 h-56 rounded-full object-cover border-2 border-blue-900"
                 />
               </div>
               <div className="text-center">
@@ -60,14 +62,7 @@ const PrincipalsMessageSection = () => {
         </div>
 
         {/* Call to Action */}
-        <div className="text-center mt-12">
-          <button
-            onClick={() => alert('Contacting Principal\'s Office...')}
-            className="bg-yellow-500 text-blue-900 px-8 py-3 rounded-lg font-bold hover:bg-yellow-600 transition duration-300 shadow-lg transform hover:scale-105"
-          >
-            Schedule a Meeting with Principal
-          </button>
-        </div>
+     
       </div>
     </section>
   );

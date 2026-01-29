@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Global page background color */
+:root {
+	--page-bg: #476469; /* hex for rgb(71,100,105) */
+}
+
+html, body, #root {
+	min-height: 100%;
+}
+
+body {
+	margin: 0;
+	background-color: var(--page-bg);
+}
